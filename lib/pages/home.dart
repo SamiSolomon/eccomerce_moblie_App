@@ -105,7 +105,7 @@ class _HomeState extends State<Home> {
         )) ,
         ), // Column
                 Expanded(
-                  child: Container(
+                  child: SizedBox(
                     height: 130,
                     child: ListView.builder(
                       padding: EdgeInsets.zero,
@@ -136,7 +136,7 @@ class _HomeState extends State<Home> {
               ],
             ),
             SizedBox(height: 20.0,),
-            Container(
+            SizedBox(
               height: 190,
               child: ListView(
                 shrinkWrap: true,
@@ -235,9 +235,9 @@ class _HomeState extends State<Home> {
 }
 
 class CategoryTitle extends StatelessWidget {
-  String image;
+  final String image;
 
-  CategoryTitle({required this.image});
+ const CategoryTitle({super.key, required this.image});
 
   @override
   Widget build(BuildContext context) {

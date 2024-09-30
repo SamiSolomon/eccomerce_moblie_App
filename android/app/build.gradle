@@ -3,12 +3,13 @@ plugins {
     id "kotlin-android"
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id "dev.flutter.flutter-gradle-plugin"
+    id "com.google.gms.google-services" // Ensure this is correctly applied
 }
 
 android {
     namespace = "com.example.untitled"
-    compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    compileSdk = 34 // Set compile SDK to the latest stable version (33)
+    ndkVersion = "21.1.6352462" // Make sure you have an NDK version available. You can specify your required NDK version.
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -16,29 +17,35 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8
+        jvmTarget = "1.8" // Ensure this is set correctly
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.example.untitled"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
-        versionCode = flutter.versionCode
-        versionName = flutter.versionName
+        // Update minSdk to 23 as required by Firebase Auth and Play Services libraries
+        minSdkVersion 23
+        targetSdkVersion 33 // Ensure this is set to the latest stable SDK version
+        versionCode 1 // Set appropriate version code
+        versionName "1.0" // Set appropriate version name
     }
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.debug
+            signingConfig = signingConfigs.debug // This is for testing purposes, replace with release signing in production
+            minifyEnabled false // Disable code shrinking to avoid shrinker-related issues
+            shrinkResources false // Disable resource shrinking if not needed
         }
     }
 }
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    implementation(platform("com.google.firebase:firebase-bom:33.3.0")) // Firebase BOM for consistent versions
+    implementation("com.google.firebase:firebase-analytics") // Firebase Analytics plugin
+    implementation "com.google.firebase:firebase-auth" // Firebase Auth plugin
+    implementation "com.google.android.gms:play-services-measurement-api:22.1.0" // Play services library
+    implementation "com.google.android.recaptcha:recaptcha:18.6.1" // Recaptcha library version 18.6.1
 }

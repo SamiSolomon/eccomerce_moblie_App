@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'home.dart';
 import 'profile.dart';
-import 'Order.dart';
+import 'order.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart'; // Assuming you are using this package
 
 class BottomNav extends StatefulWidget {
-  const BottomNav({super.key});
+  const BottomNav({super.key, required user});
 
   @override
   State<BottomNav> createState() => _BottomNavState();
-}
+ }
 
 class _BottomNavState extends State<BottomNav> {
   late List<Widget> pages;

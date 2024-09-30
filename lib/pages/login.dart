@@ -56,6 +56,7 @@ class _LogInState extends State<LogIn> {
                 child:Center(child: Text("Login", style:TextStyle(color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.bold),)),
               ),
             ),
+            SizedBox(height: 15.0,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
